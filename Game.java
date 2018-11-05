@@ -47,6 +47,8 @@ public class Game
         outside.setExit("east", theater);
         outside.setExit("south", lab);
         outside.setExit("west", pub);
+        outside.addItem(new Item(9, "Knife"));
+        outside.addItem(new Item(1, "Meat Head"));
 
         theater.setExit("west", outside);
 
@@ -181,7 +183,7 @@ public class Game
     {
         if(!command.hasSecondWord()) {
             // if there is no second word, we don't know where to look...
-            System.out.println("Look where?");
+            System.out.println(currentRoom.getLongDescription());
             return;
         }
 
