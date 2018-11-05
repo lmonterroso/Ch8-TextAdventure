@@ -54,6 +54,26 @@ public class Command
     }
 
     /**
+     * Author: corsiKa, Source: https://stackoverflow.com/questions/5439529/determine-if-a-string-is-an-integer-in-java  
+     * Checks to see if the given String is an integer, used in this project only 
+     * to check if the second word is an integer for the back command
+     * @param s the string to be checked if it is an int
+     * @param radix checks if the integers in each character are between 0 and 10
+     * @return if the String is an integer
+     */
+    public static boolean isInteger(String s, int radix) {
+    if(s.isEmpty()) return false; //if the string is empty then it isn't an int
+    for(int i = 0; i < s.length(); i++) { //iterate through thw string
+        if(i == 0 && s.charAt(i) == '-') { //checks the first char to see if the number is negative
+            if(s.length() == 1) return false; // if the string is only a '-' then it isn't an int
+            else continue;
+        }
+        if(Character.digit(s.charAt(i),radix) < 0) return false; //Character.digit returns -1 if it is not an int between 0 and 10
+    }
+    return true;
+    }
+
+    /**
      * @return true if this command was not understood.
      */
     public boolean isUnknown()

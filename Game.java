@@ -1,3 +1,5 @@
+import java.util.Stack;
+
 /**
  *  This class is the main class of the "World of Zuul" application. 
  *  "World of Zuul" is a very simple, text based adventure game.  Users 
@@ -19,6 +21,7 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
+    private Stack<Room> moves = new Stack<Room>();
         
     /**
      * Create the game and initialise its internal map.
@@ -60,6 +63,7 @@ public class Game
         office.setExit("west", lab);
 
         currentRoom = outside;  // start game outside
+        moves.push(outside);
     }
 
     /**
@@ -128,6 +132,9 @@ public class Game
             case EAT:
                 System.out.println("You eat a snack and feel replenished");
                 break;
+            case BACK:
+                back(command);
+                break;
                 
         }
         return wantToQuit;
@@ -170,11 +177,37 @@ public class Game
             System.out.println("There is no door!");
         }
         else {
+            moves.push(currentRoom);
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
         }
     }
+    
+    /**
+     * 
+     */
 
+    public void back(Command command)
+    {
+        if(!command.hasSecondWord()) {
+        currentRoom = moves.pop();
+        System.out.println(currentRoom.getLongDescription());
+        return;
+        }
+        else if (command.isInteger(command.getSecondWord(), 10)){
+            
+            int numberOfMoves = Integer.parseInt(command.getSecondWord());
+            while (numberOfMoves > 0 && !moves.empty())
+            {
+                currentRoom = moves.pop();;
+                numberOfMoves--;
+            }
+            System.out.println(currentRoom.getLongDescription());
+        
+        }
+        else System.out.println("I don't know what you mean...");
+    }   
+        
     /** 
      * Try to look in one direction. If there is an exit, view the new
      * room, otherwise print an error message.
