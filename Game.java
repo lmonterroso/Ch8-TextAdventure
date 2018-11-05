@@ -118,6 +118,11 @@ public class Game
             case QUIT:
                 wantToQuit = quit(command);
                 break;
+                
+            case LOOK:
+                lookRoom(command);
+                break;
+                
         }
         return wantToQuit;
     }
@@ -164,6 +169,32 @@ public class Game
         }
     }
 
+    /** 
+     * Try to look in one direction. If there is an exit, view the new
+     * room, otherwise print an error message.
+     */
+    private void lookRoom(Command command) 
+    {
+        if(!command.hasSecondWord()) {
+            // if there is no second word, we don't know where to look...
+            System.out.println("Look where?");
+            return;
+        }
+
+        String direction = command.getSecondWord();
+
+        // Try to look at the new room.
+        Room nextRoom = currentRoom.getExit(direction);
+
+        if (nextRoom == null) {
+            System.out.println("There is nothing there!");
+        }
+        else {
+            System.out.print("If you go " + direction + " then you wil be ");
+            System.out.println(nextRoom.getShortDescription());
+        }
+    }
+    
     /** 
      * "Quit" was entered. Check the rest of the command to see
      * whether we really quit the game.
