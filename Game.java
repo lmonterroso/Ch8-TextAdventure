@@ -123,6 +123,10 @@ public class Game
                 lookRoom(command);
                 break;
                 
+            case EAT:
+                System.out.println("You eat a snack and feel replenished");
+                break;
+                
         }
         return wantToQuit;
     }
