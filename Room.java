@@ -49,6 +49,30 @@ public class Room
     {
         items.add(newItem);
     }
+    
+    public void removeItem(Item delItem)
+    {
+        items.remove(delItem);
+    }
+    
+    public Item getItem(String itemSearch){
+        for(Item search : items){
+            if (search.getDescription().equals(itemSearch)){              
+                return search;
+            }
+        }
+        return new Item(0, "");
+    }
+    
+    public boolean findItem(String itemSearch){
+        for(Item search : items){
+            if (search.getDescription().equals(itemSearch)){              
+                return true;
+            }
+        }
+        return false;
+    }
+    
     /**
      * @return The short description of the room
      * (the one that was defined in the constructor).
@@ -78,7 +102,7 @@ public class Room
         String returnString = "\nItems:";
         for(Item itemDescription: items)
         {
-            returnString += itemDescription.getDescription();
+            returnString += itemDescription;
         }
         return returnString;
     }

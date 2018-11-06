@@ -22,6 +22,7 @@ public class Game
     private Parser parser;
     private Room currentRoom;
     private Stack<Room> moves = new Stack<Room>();
+    private Player player;
         
     /**
      * Create the game and initialise its internal map.
@@ -38,6 +39,7 @@ public class Game
     private void createRooms()
     {
         Room outside, theater, pub, lab, office;
+        player = new Player();
       
         // create the rooms
         outside = new Room("outside the main entrance of the university");
@@ -51,7 +53,7 @@ public class Game
         outside.setExit("south", lab);
         outside.setExit("west", pub);
         outside.addItem(new Item(9, "Knife"));
-        outside.addItem(new Item(1, "Meat Head"));
+        outside.addItem(new Item(1, "Meat-Head"));
 
         theater.setExit("west", outside);
 
@@ -135,6 +137,9 @@ public class Game
             case BACK:
                 back(command);
                 break;
+            case GRAB:
+                grabItem(command);
+                break;
                 
         }
         return wantToQuit;
@@ -187,7 +192,7 @@ public class Game
      * 
      */
 
-    public void back(Command command)
+    private void back(Command command)
     {
         if(!command.hasSecondWord()) {
         currentRoom = moves.pop();
@@ -234,6 +239,30 @@ public class Game
         }
     }
     
+    /**
+     * 
+     */
+    
+    private void grabItem(Command command)
+    {
+        if(!command.hasSecondWord()){
+            System.out.println("Grab What?");
+            return;
+        }
+        
+        String item = command.getSecondWord();
+        System.out.println(item);
+        Item newItem;
+        if (currentRoom.findItem(item)){
+            newItem = currentRoom.getItem(item);
+            currentRoom.removeItem(newItem);
+            player.addItem(newItem);
+            System.out.println("Item added to your inventory");
+        }
+        else System.out.println("That's not a valid item!");
+        
+        
+    }
     /** 
      * "Quit" was entered. Check the rest of the command to see
      * whether we really quit the game.
