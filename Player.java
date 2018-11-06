@@ -35,4 +35,12 @@ public class Player
         weight += pickUp.getWeight();
         inventory.add(pickUp);
     }
+    
+    /**
+     * 
+     */
+    public void removeItem(Item remove)
+    {
+        inventory.remove(remove);
+    }
 }
