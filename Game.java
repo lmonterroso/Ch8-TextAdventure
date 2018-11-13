@@ -38,7 +38,7 @@ public class Game
      */
     private void createRooms()
     {
-        Room outside, theater, pub, lab, office;
+        Room outside, theater, pub, lab, office, start;
         player = new Player();
       
         // create the rooms
@@ -53,9 +53,10 @@ public class Game
         outside.setExit("south", lab);
         outside.setExit("west", pub);
         outside.addItem(new Item(9, "Knife"));
-        outside.addItem(new Item(1, "Meat-Head"));
+        outside.addItem(new Item(1, "blue-key"));
 
         theater.setExit("west", outside);
+        theater.setKey("blue-key");
 
         pub.setExit("east", outside);
 
@@ -181,11 +182,13 @@ public class Game
         if (nextRoom == null) {
             System.out.println("There is no door!");
         }
-        else {
+        else if (nextRoom.getIsLocked(player)){
             moves.push(currentRoom);
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
         }
+        else 
+            System.out.println("The door is locked you need a " + nextRoom.getKey());
     }
     
     /**

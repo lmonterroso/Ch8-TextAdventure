@@ -22,6 +22,8 @@ public class Room
     private String description;
     private HashMap<String, Room> exits;        // stores exits of this room.
     private ArrayList<Item> items = new ArrayList<Item>();
+    private boolean isLocked;
+    private Item key;
 
     /**
      * Create a room described "description". Initially, it has
@@ -33,6 +35,8 @@ public class Room
     {
         this.description = description;
         exits = new HashMap<String, Room>();
+        key = new Item(0, "");
+        isLocked = true;
     }
 
     /**
@@ -50,6 +54,16 @@ public class Room
         items.add(newItem);
     }
     
+    public void setKey(String newItem)
+    {
+        key = new Item(0, newItem);
+        isLocked = false;
+    }
+    
+    public String getKey()
+    {
+        return key.getDescription();
+    }
     public void removeItem(Item delItem)
     {
         items.remove(delItem);
@@ -130,6 +144,13 @@ public class Room
     public Room getExit(String direction) 
     {
         return exits.get(direction);
+    }
+    
+    public boolean getIsLocked(Player player){
+        if (player.checkItem(key.getDescription())){
+            return true;
+        }
+        return isLocked;
     }
 }
 

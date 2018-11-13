@@ -43,4 +43,13 @@ public class Player
     {
         inventory.remove(remove);
     }
+    
+    public boolean checkItem(String check){
+        boolean test = false;
+        for(Item n : inventory){
+            if (n.getDescription() == check)
+                test = true;
+            }
+            return test;
+        }
 }

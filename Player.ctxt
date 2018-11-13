@@ -10,4 +10,6 @@ comment2.text=\r\n\ An\ example\ of\ a\ method\ -\ replace\ this\ comment\ with\
 comment3.params=remove
 comment3.target=void\ removeItem(Item)
 comment3.text=\r\n\ \r\n
-numComments=4
+comment4.params=check
+comment4.target=boolean\ checkItem(java.lang.String)
+numComments=5
