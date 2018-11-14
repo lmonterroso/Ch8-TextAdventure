@@ -39,8 +39,12 @@ public class Game
     private void createRooms()
     {
         Room outside, theater, pub, lab, office, start;
+        Room room1, room2, room3, room4, room5, room6, room7, 
+        room8, room9, room10, room11, room12, room13, room14, room15;
         player = new Player();
-      
+        
+        room1 = new Room("a cold dark room");
+        room2 = new Room("a dusty closet");
         // create the rooms
         outside = new Room("outside the main entrance of the university");
         theater = new Room("in a lecture theater");
