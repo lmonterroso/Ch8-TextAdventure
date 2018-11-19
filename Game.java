@@ -45,32 +45,59 @@ public class Game
         
         room1 = new Room("a cold dark room");
         room2 = new Room("a dusty closet");
-        // create the rooms
-        outside = new Room("outside the main entrance of the university");
-        theater = new Room("in a lecture theater");
-        pub = new Room("in the campus pub");
-        lab = new Room("in a computing lab");
-        office = new Room("in the computing admin office");
+        room3 = new Room("");
+        room4 = new Room("");
+        room5 = new Room("");
+        room6 = new Room("");
+        room7 = new Room("");
+        room8 = new Room("");
+        room9 = new Room("");
+        room10 = new Room("");
+        room11 = new Room("");
+        room12 = new Room("");
+        room13 = new Room("");
+        room14 = new Room("");
+        room15 = new Room("");
         
-        // initialise room exits
-        outside.setExit("east", theater);
-        outside.setExit("south", lab);
-        outside.setExit("west", pub);
-        outside.addItem(new Item(9, "Knife"));
-        outside.addItem(new Item(1, "blue-key"));
+        room1.setExit("north", room2);
+        
+        room2.setExit("south", room1);
+        room2.setExit("north", room3);
+        
+        room3.setExit("south", room2);
+        room3.setExit("west", room4);
+        room3.setExit("east", room5);
+        
+        room4.setExit("east", room3);
+        room4.setExit("south", room6);
+        room4.setExit("north", room7);
+        
+        room6.setExit("north", room4);
+        
+        room7.setExit("south", room4);
+        room7.setExit("stairs", room11);
+        
+        room5.setExit("west", room3);
+        room5.setExit("north", room8);
+        
+        room8.setExit("south", room5);
+        room8.setExit("north", room9);
+        
+        room9.setExit("south", room8);
+        room9.setExit("east", room10);
+        
+        room11.setTrapDoor();
+        room11.setExit("south", room12);
+        room11.setExit("east", room13);
+        room11.setExit("west", room14);
+        room11.setExit("north", room15);
+        
+        room13.setExit("west", room11);
+        
+        room14.setExit("east", room11);
 
-        theater.setExit("west", outside);
-        theater.setKey("blue-key");
-
-        pub.setExit("east", outside);
-
-        lab.setExit("north", outside);
-        lab.setExit("east", office);
-
-        office.setExit("west", lab);
-
-        currentRoom = outside;  // start game outside
-        moves.push(outside);
+        currentRoom = room1;  // start game outside
+        moves.push(room1);
     }
 
     /**
@@ -189,6 +216,7 @@ public class Game
         else if (nextRoom.getIsLocked(player)){
             moves.push(currentRoom);
             currentRoom = nextRoom;
+            checkRoom(nextRoom);
             System.out.println(currentRoom.getLongDescription());
         }
         else 
@@ -211,7 +239,7 @@ public class Game
             int numberOfMoves = Integer.parseInt(command.getSecondWord());
             while (numberOfMoves > 0 && !moves.empty())
             {
-                currentRoom = moves.pop();;
+                currentRoom = moves.pop();
                 numberOfMoves--;
             }
             System.out.println(currentRoom.getLongDescription());
@@ -220,6 +248,17 @@ public class Game
         else System.out.println("I don't know what you mean...");
     }   
         
+    
+    private void checkRoom(Room check){
+        if (check.getTrapDoor()){
+            while (!moves.empty())
+            {
+               moves.pop();
+            }
+            System.out.println("The way behind you suddenly closes!");
+        }
+    }
+    
     /** 
      * Try to look in one direction. If there is an exit, view the new
      * room, otherwise print an error message.

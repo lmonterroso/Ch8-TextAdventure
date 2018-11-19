@@ -23,6 +23,7 @@ public class Room
     private HashMap<String, Room> exits;        // stores exits of this room.
     private ArrayList<Item> items = new ArrayList<Item>();
     private boolean isLocked;
+    private boolean trapDoor;
     private Item key;
 
     /**
@@ -151,6 +152,14 @@ public class Room
             return true;
         }
         return isLocked;
+    }
+    
+    public void setTrapDoor(){
+        trapDoor = true;
+    }
+    
+    public boolean getTrapDoor(){
+        return trapDoor;
     }
 }
 
