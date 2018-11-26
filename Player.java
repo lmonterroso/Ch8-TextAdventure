@@ -18,7 +18,7 @@ public class Player
     public Player()
     {
         // initialise instance variables
-        carryCapacity = 100;
+        carryCapacity = 10;
         weight = 0;
         inventory = new ArrayList<Item>();
     }
@@ -29,11 +29,21 @@ public class Player
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    public void addItem(Item pickUp)
+    public boolean addItem(Item pickUp)
     {
         // put your code here
         weight += pickUp.getWeight();
-        inventory.add(pickUp);
+        
+        if (weight > carryCapacity)
+        {
+            System.out.println("You are carrying too much you can't pick this up");
+            return false;
+        }
+        else {
+            System.out.println(pickUp.getDescription() + " added to your inventory");
+            inventory.add(pickUp);
+            return true;
+        }
     }
     
     /**

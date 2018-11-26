@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=NPC
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ NPC\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=want\ give\ description
+comment1.target=NPC(Item,\ Item,\ java.lang.String)
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ NPC\r\n
+comment2.params=wants\ player
+comment2.target=void\ wantItem(Item,\ Player)
+comment2.text=\r\n\ An\ example\ of\ a\ method\ -\ replace\ this\ comment\ with\ your\ own\r\n\r\n\ @param\ \ y\ \ a\ sample\ parameter\ for\ a\ method\r\n\ @return\ \ \ \ the\ sum\ of\ x\ and\ y\r\n
+comment3.params=player
+comment3.target=void\ giveItem(Player)
+comment4.params=sentence
+comment4.target=void\ setMessage(java.lang.String)
+comment5.params=
+comment5.target=java.lang.String\ message()
+numComments=6

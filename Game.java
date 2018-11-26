@@ -297,13 +297,13 @@ public class Game
         }
         
         String item = command.getSecondWord();
-        System.out.println(item);
         Item newItem;
         if (currentRoom.findItem(item)){
             newItem = currentRoom.getItem(item);
+            if (player.addItem(newItem))
+            {
             currentRoom.removeItem(newItem);
-            player.addItem(newItem);
-            System.out.println("Item added to your inventory");
+            }
         }
         else System.out.println("That's not a valid item!");
         
