@@ -44,7 +44,13 @@ public class NPC
     public void giveItem(Player player)
     {
         player.removeItem(want);
+        if (give != null)
+        {
         player.addItem(give);
+        System.out.println(message);
+        }
+        else
+            System.out.println(message);
     }
     
     public void setMessage(String sentence)

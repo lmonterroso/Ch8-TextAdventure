@@ -42,49 +42,69 @@ public class Game
         Room room1, room2, room3, room4, room5, room6, room7, 
         room8, room9, room10, room11, room12, room13, room14, room15;
         player = new Player();
+        Item cane, handle, bluekey, eyepatch, greenkey, oil;
         
-        room1 = new Room("a cold dark room");
-        room2 = new Room("a dusty closet");
-        room3 = new Room("");
-        room4 = new Room("");
-        room5 = new Room("");
-        room6 = new Room("");
-        room7 = new Room("");
-        room8 = new Room("");
-        room9 = new Room("");
-        room10 = new Room("");
-        room11 = new Room("");
+        
+        room1 = new Room("in a cold dark room");
+        room2 = new Room("in a dusty closet");
+        room3 = new Room("in a library");
+        room4 = new Room("in a small hallway");
+        room5 = new Room("in a lounge with a fireplace and an old man resting in the corner");
+        room6 = new Room("in a room with maps all over the walls and a one eyed pirate looking through them");
+        room7 = new Room("in  a room with stairs leading up");
+        room8 = new Room("in a stone room with paintings on the wall");
+        room9 = new Room("in a closet with robot parts everywhere");
+        room10 = new Room("in a boiler room");
+        room11 = new Room("in a room with two elevators to your north and south");
         room12 = new Room("");
-        room13 = new Room("");
-        room14 = new Room("");
+        room13 = new Room("in  a toy room with a metal that's missing a few pieces");
+        room14 = new Room("in  a dusty room with a  robot that hasn't seemed to move in ages");
         room15 = new Room("");
         
         room1.setExit("north", room2);
         
         room2.setExit("south", room1);
         room2.setExit("north", room3);
+        cane = new Item(3, "old-cane");
+        room2.addItem(cane);
         
         room3.setExit("south", room2);
         room3.setExit("west", room4);
         room3.setExit("east", room5);
+        handle = new Item(4,"metal-crank");
+        room3.addItem(handle);
         
         room4.setExit("east", room3);
         room4.setExit("south", room6);
         room4.setExit("north", room7);
         
+        
         room6.setExit("north", room4);
+        eyepatch = new Item(1, "eye-patch");
+        bluekey = new Item(0, "blue-key");
+        NPC pirate = new NPC(eyepatch, bluekey, "a pirate with a missing eye");
+        room6.setNPC(pirate);
         
         room7.setExit("south", room4);
         room7.setExit("stairs", room11);
+        room7.setKey("blue-key");
+        
         
         room5.setExit("west", room3);
         room5.setExit("north", room8);
+        NPC oldMan= new NPC(cane, eyepatch, "an old man resting on the wall");
+        room5.setNPC(oldMan);
         
         room8.setExit("south", room5);
         room8.setExit("north", room9);
         
         room9.setExit("south", room8);
         room9.setExit("east", room10);
+        oil = new Item(4, "oil-can");
+        
+        room10.setExit("west", room9);
+        greenkey = new Item(0, "green-key");
+        room10.setKey("green-key");
         
         room11.setTrapDoor();
         room11.setExit("south", room12);
@@ -163,8 +183,8 @@ public class Game
                 lookRoom(command);
                 break;
                 
-            case EAT:
-                System.out.println("You eat a snack and feel replenished");
+            case GIVE:
+                giveItem(command);
                 break;
             case BACK:
                 back(command);
@@ -285,6 +305,28 @@ public class Game
         }
     }
     
+    private void giveItem(Command command)
+    {
+        if(!command.hasSecondWord()){
+            System.out.println("Give what?");
+            return;
+        }
+        
+        String item = command.getSecondWord();
+        Item newItem;
+        if (currentRoom.findItem(item)){
+            newItem = currentRoom.getItem(item);
+            if (player.addItem(newItem))
+            {
+            currentRoom.removeItem(newItem);
+            }
+        }
+        else System.out.println("That's not a valid item!");
+        
+        
+    } 
+    
+    
     /**
      * 
      */
@@ -292,7 +334,7 @@ public class Game
     private void grabItem(Command command)
     {
         if(!command.hasSecondWord()){
-            System.out.println("Grab What?");
+            System.out.println("Grab what?");
             return;
         }
         

@@ -25,6 +25,7 @@ public class Room
     private boolean isLocked;
     private boolean trapDoor;
     private Item key;
+    private NPC stranger;
 
     /**
      * Create a room described "description". Initially, it has
@@ -160,6 +161,22 @@ public class Room
     
     public boolean getTrapDoor(){
         return trapDoor;
+    }
+    
+    public boolean giveNPC()
+    {
+        if (stranger != null)
+            return true;
+        else
+        {
+            System.out.println("No one to give to");
+            return false;
+        }
+    }
+    
+    public void setNPC(NPC newStranger)
+    {
+        stranger = newStranger;
     }
 }
 
