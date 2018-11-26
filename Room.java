@@ -173,6 +173,10 @@ public class Room
             return false;
         }
     }
+    public NPC getNPC()
+    {
+        return stranger;
+    }
     
     public void setNPC(NPC newStranger)
     {

@@ -29,11 +29,11 @@ public class NPC
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    public void wantItem(Item wants, Player player)
+    public void wantItem(String wants, Player player)
     {
-        if (want == wants)
+        if (want.getDescription().equalsIgnoreCase(wants))
         {
-            System.out.println("The stranger takes your " + wants.getDescription()
+            System.out.println("The stranger takes your " + wants
              + " and gives you something special");
             this.giveItem(player);
         }
