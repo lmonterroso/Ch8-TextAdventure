@@ -23,7 +23,8 @@ public class Game
     private Room currentRoom;
     private Stack<Room> moves = new Stack<Room>();
     private Player player;
-        
+    private Room room1, room2, room3, room4, room5, room6, room7, 
+        room8, room9, room10, room11, room12, room13, room14, room15;    
     /**
      * Create the game and initialise its internal map.
      */
@@ -38,9 +39,6 @@ public class Game
      */
     private void createRooms()
     {
-        Room outside, theater, pub, lab, office, start;
-        Room room1, room2, room3, room4, room5, room6, room7, 
-        room8, room9, room10, room11, room12, room13, room14, room15;
         player = new Player();
         Item cane, handle, bluekey, eyepatch, greenkey, oil;
         
@@ -82,18 +80,20 @@ public class Game
         room6.setExit("north", room4);
         eyepatch = new Item(1, "eye-patch");
         bluekey = new Item(0, "blue-key");
-        NPC pirate = new NPC(eyepatch, bluekey, "a pirate with a missing eye");
+        NPC pirate = new NPC(eyepatch, bluekey);
         room6.setNPC(pirate);
+        pirate.setMessage("Yarr! Thanks for finding me an eye-patch, take this key it doesn't lead to any of the treasure on these maps");
         
         room7.setExit("south", room4);
         room7.setExit("stairs", room11);
-        room7.setKey("blue-key");
+        room7.setKey("green-key");
         
         
         room5.setExit("west", room3);
         room5.setExit("north", room8);
-        NPC oldMan= new NPC(cane, eyepatch, "an old man resting on the wall");
+        NPC oldMan= new NPC(cane, eyepatch);
         room5.setNPC(oldMan);
+        oldMan.setMessage(">Thanks! I found this on the ground, you can have it.");
         
         room8.setExit("south", room5);
         room8.setExit("north", room9);
@@ -101,21 +101,27 @@ public class Game
         room9.setExit("south", room8);
         room9.setExit("east", room10);
         oil = new Item(4, "oil-can");
+        room9.addItem(oil);
         
         room10.setExit("west", room9);
         greenkey = new Item(0, "green-key");
-        room10.setKey("green-key");
+        room10.setKey("blue-key");
+        room10.addItem(greenkey);
         
-        room11.setTrapDoor();
+        room11.setTrapDoor(true);
         room11.setExit("south", room12);
         room11.setExit("east", room13);
         room11.setExit("west", room14);
         room11.setExit("north", room15);
         
         room13.setExit("west", room11);
+        NPC robot = new NPC(handle, null);
+        robot.setMessage("You need to walk through the valley to cross the mountain");
         
         room14.setExit("east", room11);
-
+        NPC oldRobot = new NPC(oil, null);
+        oldRobot.setMessage("Follow the stars and you will surely get lost");
+        
         currentRoom = room1;  // start game outside
         moves.push(room1);
     }
@@ -146,6 +152,8 @@ public class Game
         System.out.println();
         System.out.println("Welcome to the World of Zuul!");
         System.out.println("World of Zuul is a new, incredibly boring adventure game.");
+        System.out.println("You wake up in a dark basement with no memmory of the night before." +
+                           "You must find your way out of this basement so you don't miss class");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
@@ -237,7 +245,6 @@ public class Game
             moves.push(currentRoom);
             currentRoom = nextRoom;
             checkRoom(nextRoom);
-            System.out.println(currentRoom.getLongDescription());
         }
         else 
             System.out.println("The door is locked you need a " + nextRoom.getKey());
@@ -250,7 +257,8 @@ public class Game
     private void back(Command command)
     {
         if(!command.hasSecondWord()) {
-        currentRoom = moves.pop();
+            if (!moves.empty())
+                currentRoom = moves.pop();
         System.out.println(currentRoom.getLongDescription());
         return;
         }
@@ -276,7 +284,37 @@ public class Game
                moves.pop();
             }
             System.out.println("The way behind you suddenly closes!");
+            currentRoom.setTrapDoor(false);
         }
+        
+        if (currentRoom == room11)
+        {
+            System.out.println(currentRoom.getLongDescription());
+            System.out.println("You notice  a sign that reads: Warning! " + 
+            "Choose carefully only elevator will take you to freedom, the other will be your end!!!");
+        }
+        
+        else if (currentRoom == room12)
+        {
+            while (!moves.empty())
+            {
+               moves.pop();
+            }
+            System.out.println("The elevator whirs on and begins to move, the door opens and you see sunlight. \n" +
+                               "Congratulations you have escaped from Zuul! Type quit to end the game."); 
+        }
+        
+        else if (currentRoom == room15)
+        {
+            while (!moves.empty())
+            {
+               moves.pop();
+            }
+            System.out.println("The elevator whirs on and begins to move, suddenly the floor under you collapses and you fall to your death. \n" +
+                               "You lose! Try again next time. Type quit to end the game."); 
+        }
+        else
+            System.out.println(currentRoom.getLongDescription());
     }
     
     /** 

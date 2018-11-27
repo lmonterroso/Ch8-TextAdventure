@@ -52,6 +52,7 @@ public class Player
     public void removeItem(Item remove)
     {
         inventory.remove(remove);
+        weight -= remove.getWeight();
     }
     
     public boolean checkItem(String check){

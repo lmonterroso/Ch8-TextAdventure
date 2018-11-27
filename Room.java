@@ -155,8 +155,8 @@ public class Room
         return isLocked;
     }
     
-    public void setTrapDoor(){
-        trapDoor = true;
+    public void setTrapDoor(boolean check){
+        trapDoor = check;
     }
     
     public boolean getTrapDoor(){

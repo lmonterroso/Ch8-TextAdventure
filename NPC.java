@@ -10,17 +10,16 @@ public class NPC
     // instance variables - replace the example below with your own
     private Item want;
     private Item give;
-    private String description, message;
+    private String message;
 
     /**
      * Constructor for objects of class NPC
      */
-    public NPC(Item want, Item give, String description)
+    public NPC(Item want, Item give)
     {
         // initialise instance variables
         this.want = want;
         this.give = give;
-        this.description = description;
     }
 
     /**
@@ -34,7 +33,7 @@ public class NPC
         if (want.getDescription().equalsIgnoreCase(wants))
         {
             System.out.println("The stranger takes your " + wants
-             + " and gives you something special");
+             + " and gives you something special.");
             this.giveItem(player);
         }
         else
@@ -46,8 +45,8 @@ public class NPC
         player.removeItem(want);
         if (give != null)
         {
-        player.addItem(give);
         System.out.println(message);
+        player.addItem(give);
         }
         else
             System.out.println(message);
