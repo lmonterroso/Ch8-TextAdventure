@@ -1,9 +1,10 @@
 
 /**
- * Write a description of class NPC here.
+ * NPC's are non-playable characters who may have an item to give and 
+ * an item that they want.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Luis Monterroso
+ * @version 2018.11.05
  */
 public class NPC
 {
@@ -23,10 +24,11 @@ public class NPC
     }
 
     /**
-     * An example of a method - replace this comment with your own
+     * Checks if the given string matches the description 
+     * of the item the NPC wants.
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * @param wants the string to be compared to wanted item's description
+     * @param player the player that will recieve an item if the NPC get's what they want
      */
     public void wantItem(String wants, Player player)
     {
@@ -39,7 +41,10 @@ public class NPC
         else
             System.out.println("They don't seem to want that");
     }
-    
+    /**
+     * gives the player an item and prints out a message, if 
+     * the NPC has nothing to give then they just print out their message. 
+     */
     public void giveItem(Player player)
     {
         player.removeItem(want);
@@ -52,12 +57,19 @@ public class NPC
             System.out.println(message);
     }
     
+    /**
+     * sets the message the NPC will give when it recieves the item wants
+     * @param the string holding the message to be assigned.
+     */
     public void setMessage(String sentence)
     {
         message = sentence;
     }
     
-    
+    /**
+     * gives the message the NPC has when it recieves what it wants.
+     * @return the message the NPC has when it recieves it's item
+     */
     public String message()
     {
         return message;

@@ -1,15 +1,16 @@
 #BlueJ class context
 comment0.target=Player
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Player\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ The\ Player\ class\ holds\ any\ items\ picked\ up\ during\ the\ game.\ Also\ specifies\ a\ current\r\n\ weight\ for\ the\ items\ in\ Players\ inventory\ and\ a\ max\ weight\ for\ the\ Player\r\n\r\n\ @author\ Luis\ Monterroso\r\n\ @version\ 2018.11.05\r\n
 comment1.params=
 comment1.target=Player()
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Player\r\n
 comment2.params=pickUp
 comment2.target=boolean\ addItem(Item)
-comment2.text=\r\n\ An\ example\ of\ a\ method\ -\ replace\ this\ comment\ with\ your\ own\r\n\r\n\ @param\ \ y\ \ a\ sample\ parameter\ for\ a\ method\r\n\ @return\ \ \ \ the\ sum\ of\ x\ and\ y\r\n
+comment2.text=\r\n\ Checks\ to\ see\ if\ an\ item\ can\ be\ picked\ up,\ if\ it\ can\ it\ is\ added\ to\ your\ \r\n\ inventory\ and\ true\ is\ returned.\ Otherwise,\ false.\r\n\r\n\ @param\ the\ item\ to\ be\ picked\ up\r\n\ @return\ true\ if\ the\ item\ is\ able\ to\ be\ picked\ up,\ false\ otherwise.\ \r\n
 comment3.params=remove
 comment3.target=void\ removeItem(Item)
-comment3.text=\r\n\ \r\n
+comment3.text=\r\n\ remove\ an\ item\ from\ the\ players\ inventory\r\n\ @param\ the\ item\ to\ be\ removed\r\n
 comment4.params=check
 comment4.target=boolean\ checkItem(java.lang.String)
+comment4.text=\r\n\ checks\ to\ see\ if\ an\ item\ is\ in\ the\ players\ inventory\ \r\n\ and\ return\ true\ or\ false\ based\ on\ the\ answer\r\n\ @param\ the\ string\ to\ be\ compared\ to\ every\ item\ in\ the\ inventory.\r\n\ @return\ true\ if\ an\ item's\ description\ matches\ param\ check\r\n
 numComments=5

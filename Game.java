@@ -14,7 +14,8 @@ import java.util.Stack;
  *  executes the commands that the parser returns.
  * 
  * @author  Michael Kölling and David J. Barnes
- * @version 2011.08.10
+ * @author Luis Monterroso
+ * @version 2018.11.05
  */
 
 public class Game 
@@ -214,8 +215,7 @@ public class Game
      */
     private void printHelp() 
     {
-        System.out.println("You are lost. You are alone. You wander");
-        System.out.println("around at the university.");
+        System.out.println("You are lost. You are alone. You wander around");
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands();
@@ -241,7 +241,7 @@ public class Game
         if (nextRoom == null) {
             System.out.println("There is no door!");
         }
-        else if (nextRoom.getIsLocked(player)){
+        else if (nextRoom.getLocked(player)){
             moves.push(currentRoom);
             currentRoom = nextRoom;
             checkRoom(nextRoom);
@@ -251,13 +251,14 @@ public class Game
     }
     
     /**
-     * 
+     * Try to go back to a previous room and print out it's description, if there is no room
+     * in the stack then this just prints out the current rooms description
      */
 
     private void back(Command command)
     {
         if(!command.hasSecondWord()) {
-            if (!moves.empty())
+            if (!moves.empty()) //check if there are any rooms to return to
                 currentRoom = moves.pop();
         System.out.println(currentRoom.getLongDescription());
         return;
@@ -276,7 +277,11 @@ public class Game
         else System.out.println("I don't know what you mean...");
     }   
         
-    
+    /**
+     * Check the current room to see if there are any special features to the room.
+     * There are specific roooms that will print out a message when entered. This
+     * is hardcoded since the project was still small.
+     */
     private void checkRoom(Room check){
         if (check.getTrapDoor()){
             while (!moves.empty())
@@ -287,14 +292,14 @@ public class Game
             currentRoom.setTrapDoor(false);
         }
         
-        if (currentRoom == room11)
+        if (currentRoom == room11) //one of the final rooms before you win or lose
         {
             System.out.println(currentRoom.getLongDescription());
             System.out.println("You notice  a sign that reads: Warning! " + 
             "Choose carefully only elevator will take you to freedom, the other will be your end!!!");
         }
         
-        else if (currentRoom == room12)
+        else if (currentRoom == room12)//The final room, you win if you make it here.
         {
             while (!moves.empty())
             {
@@ -304,7 +309,7 @@ public class Game
                                "Congratulations you have escaped from Zuul! Type quit to end the game."); 
         }
         
-        else if (currentRoom == room15)
+        else if (currentRoom == room15)//The other final room, you lose if you make it here.
         {
             while (!moves.empty())
             {
@@ -343,6 +348,11 @@ public class Game
         }
     }
     
+    /**
+     * Give an item to an NPC, checks to see if the item is in your inventory
+     * and if it isn't prints out an error message. Otherwise, checks to see if 
+     * there is an NPC to give something to and if they want the item.
+     */
     private void giveItem(Command command)
     {
         if(!command.hasSecondWord()){
@@ -351,7 +361,7 @@ public class Game
         }
         
         String item = command.getSecondWord();
-        if (currentRoom.giveNPC())
+        if (currentRoom.giveNPC()) //check if there is an NPC to give something to
         {
             currentRoom.getNPC().wantItem(item, player);
         } 
@@ -359,7 +369,8 @@ public class Game
     
     
     /**
-     * 
+     * Picks up an item on the ground, if nothing imatches what you
+     * want to grab, prints an error message.
      */
     
     private void grabItem(Command command)

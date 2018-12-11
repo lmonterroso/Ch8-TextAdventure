@@ -1,13 +1,14 @@
 
 /**
- * Write a description of class Item here.
+ * Items can be used to interact with NPC's and doors. 
+ * They have a  weight and description attached to them.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Luis Monterroso
+ * @version 2018.11.05
  */
 public class Item
 {
-    // instance variables - replace the example below with your own
+    // instance variables
     private String description;
     private int weight;
 
@@ -21,15 +22,19 @@ public class Item
         description = name;
     }
     
+    /**
+     * returns the items description
+     * @return the description of the item
+     */
     public String getDescription(){
         return description;
     }
-      /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
+    
+     /**
+      * @override
+      * Specifies how to print an item if is called in a print statement.
+      * @return  The items and description followed by it's weight
+      */
     public String toString()
     {
         // put your code here
@@ -37,10 +42,8 @@ public class Item
     }
     
     /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * Get the items weight 
+     * @return the weight of an item
      */
     public int getWeight(){
         return weight;

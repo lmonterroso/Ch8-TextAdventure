@@ -1,9 +1,10 @@
 import java.util.ArrayList;
 /**
- * Write a description of class Player here.
+ * The Player class holds any items picked up during the game. Also specifies a current
+ * weight for the items in Players inventory and a max weight for the Player
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Luis Monterroso
+ * @version 2018.11.05
  */
 public class Player
 {
@@ -24,10 +25,11 @@ public class Player
     }
 
     /**
-     * An example of a method - replace this comment with your own
+     * Checks to see if an item can be picked up, if it can it is added to your 
+     * inventory and true is returned. Otherwise, false.
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * @param the item to be picked up
+     * @return true if the item is able to be picked up, false otherwise. 
      */
     public boolean addItem(Item pickUp)
     {
@@ -47,7 +49,8 @@ public class Player
     }
     
     /**
-     * 
+     * remove an item from the players inventory
+     * @param the item to be removed
      */
     public void removeItem(Item remove)
     {
@@ -55,6 +58,12 @@ public class Player
         weight -= remove.getWeight();
     }
     
+    /**
+     * checks to see if an item is in the players inventory 
+     * and return true or false based on the answer
+     * @param the string to be compared to every item in the inventory.
+     * @return true if an item's description matches param check
+     */
     public boolean checkItem(String check){
         boolean test = false;
         for(Item n : inventory){

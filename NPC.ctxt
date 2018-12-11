@@ -1,16 +1,19 @@
 #BlueJ class context
 comment0.target=NPC
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ NPC\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ NPC's\ are\ non-playable\ characters\ who\ may\ have\ an\ item\ to\ give\ and\ \r\n\ an\ item\ that\ they\ want.\r\n\r\n\ @author\ Luis\ Monterroso\r\n\ @version\ 2018.11.05\r\n
 comment1.params=want\ give
 comment1.target=NPC(Item,\ Item)
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ NPC\r\n
 comment2.params=wants\ player
 comment2.target=void\ wantItem(java.lang.String,\ Player)
-comment2.text=\r\n\ An\ example\ of\ a\ method\ -\ replace\ this\ comment\ with\ your\ own\r\n\r\n\ @param\ \ y\ \ a\ sample\ parameter\ for\ a\ method\r\n\ @return\ \ \ \ the\ sum\ of\ x\ and\ y\r\n
+comment2.text=\r\n\ Checks\ if\ the\ given\ string\ matches\ the\ description\ \r\n\ of\ the\ item\ the\ NPC\ wants.\r\n\r\n\ @param\ wants\ the\ string\ to\ be\ compared\ to\ wanted\ item's\ description\r\n\ @param\ player\ the\ player\ that\ will\ recieve\ an\ item\ if\ the\ NPC\ get's\ what\ they\ want\r\n
 comment3.params=player
 comment3.target=void\ giveItem(Player)
+comment3.text=\r\n\ gives\ the\ player\ an\ item\ and\ prints\ out\ a\ message,\ if\ \r\n\ the\ NPC\ has\ nothing\ to\ give\ then\ they\ just\ print\ out\ their\ message.\ \r\n
 comment4.params=sentence
 comment4.target=void\ setMessage(java.lang.String)
+comment4.text=\r\n\ sets\ the\ message\ the\ NPC\ will\ give\ when\ it\ recieves\ the\ item\ wants\r\n\ @param\ the\ string\ holding\ the\ message\ to\ be\ assigned.\r\n
 comment5.params=
 comment5.target=java.lang.String\ message()
+comment5.text=\r\n\ gives\ the\ message\ the\ NPC\ has\ when\ it\ recieves\ what\ it\ wants.\r\n\ @return\ the\ message\ the\ NPC\ has\ when\ it\ recieves\ it's\ item\r\n
 numComments=6

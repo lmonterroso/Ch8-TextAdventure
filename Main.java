@@ -1,15 +1,15 @@
 
 /**
- * Write a description of class Main here.
+ * Main class for running the game 
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @Luis Monterroso
+ * @2018 November 5
  */
 public class Main
 {
 
     /**
-     * Constructor for objects of class Main
+     * Main method
      */
     public static void main(String[] args)
     {
